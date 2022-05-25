@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" verbose="1" name="Trip Advisor RnD" annotations="JDK" parallel="tests">
+    <test name="Get Site">
+        <classes>
+            <class name="TestCases.ExecBooking"/>
+        </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,84 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: '1.8'
+        
+    - name: Install Google Chrome
+      run: chmod +x InstallChrome.sh
+ 
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+  
+
+  build-and-run-on-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: '1.8'
+        
+    - name: Install Google Chrome
+      run: chmod +x InstallChrome.sh
+ 
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    
+    - name: Check Windows execution policy
+      run: Get-ExecutionPolicy 
+      
+    - name: Run with Maven
+      run: mvn --batch-mode --update-snapshots package
+
+ # test-job:
+  
+ #  runs-on: ubuntu-latest
+   
+ #  outputs:
+    
+ #   output1: ${{ steps.step1.outputs.test }}
+ #   output2: ${{ steps.step2.outputs.test }}
+ #   output3: ${{ steps.step3.outputs.test }}
+    
+ #  steps:
+  #   - id: step1 
+   #  - run: echo "::set-output name=test::trying"
+    # - id: step2
+     #- run: echo "::set-output name=test::GitHub"
+     #- id: step3
+     #- run: echo "::set-output name=test::Actions!"
+     
+  run-on-MacOs:
+   
+   runs-on: macos-latest
+   
+   steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: '1.8'
+        
+    - name: Install Google Chrome
+      run: chmod +x InstallChrome.sh
+      
+    - name: Run with Maven
+      run: mvn --batch-mode --update-snapshots package
+    

@@ -31,7 +31,7 @@ jobs:
       uses: convictional/trigger-workflow-and-wait@v1.3.0
       with:
         owner: anc09
-        repo: TripA-RnD 
+        repo: TripA_RnD 
         github_token: ${{ secrets.Access_Token }}
         workflow_file_name: Test2.yml
         
